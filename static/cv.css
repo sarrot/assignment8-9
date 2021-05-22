@@ -1,0 +1,129 @@
+/* Basic */
+body {
+    -ms-overflow-style: scrollbar;
+    /*overflow: hidden;/*/
+    position: relative;
+    z-index: 1;
+    /*background-image: linear-gradient(to bottom, rgba(255, 168, 76, 0.6) 0%, rgba(255, 123, 13, 0.6) 100%), url('https://images.unsplash.com/photo-1446824505046-e43605ffb17f');*/
+    background-color: antiquewhite;
+    background-blend-mode: soft-light;
+    background-size: cover;
+    background-position: center center;
+    font-family: "Lucinda Grande", "Lucinda Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+
+
+}
+
+p{
+    font-size: x-large;
+}
+#me{
+    justify-content: space-between;
+      display: flex;
+    margin: 20px;
+    font-size: x-large;
+
+}
+/* Section */
+
+section {
+    /*-ms-overflow-style: scrollbar;*/
+    padding-bottom: 10px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+section h4 {
+    background-color: #565656;
+    color: #C09F80;
+}
+
+
+/* About*/
+#about {
+    padding-top: 58px;
+}
+
+
+/* Nav */
+
+#nav ul {
+    list-style-type: none;
+    overflow: hidden;
+    background-color: #76323F;
+    text-align: center;
+    transition: opacity .25s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    width: 98%;
+}
+
+#nav li {
+    float: left;
+}
+
+#nav li a {
+    display: inline-block;
+    color: #e3e3e3;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    padding-right: 50px;
+}
+
+/*#user{*/
+/*    display: inline-block;*/
+/*    color: #e3e3e3;*/
+/*    text-align: center;*/
+/*    padding: 14px 16px;*/
+/*    text-decoration: none;*/
+/*    padding-right: 50px;*/
+/*}*/
+
+#nav li:hover {
+    background-color: #444444;
+}
+
+#nav a:hover {
+    color: white;
+}
+
+
+.transparent {
+    opacity: 0.2;
+    transition: opacity .5s ease-in-out;
+    -moz-transition: opacity .5s ease-in-out;
+    -webkit-transition: opacity .5s ease-in-out;
+}
+
+.transparent-out {
+    opacity: 1;
+    transition: opacity .5s ease-in-out;
+    -moz-transition: opacity .5s ease-in-out;
+    -webkit-transition: opacity .5s ease-in-out;
+}
+
+
+
+div.time {
+  /*text-align: center;*/
+     text-align: center;
+      position: relative;
+  font-size: 30px;
+  color: grey;
+  letter-spacing: 2px;
+}
+
+div.line {
+
+
+  line-height: 1;
+  position: absolute;
+  left: 50%;
+  /*top: 50%;*/
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}

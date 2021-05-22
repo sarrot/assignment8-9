@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='cv.css') }}"/>
+</head>
+<body>
+    <div>
+      <h1>{{ skills|capitalize }}</h1>
+        <ul>
+            <li>{% from 'cv.html' import skill_one %} {{ skill_one }}</li>
+            {% from 'cv.html' import skill_two %}
+            {% if skill_two %}
+            <li>{{ skill_two }}</li>
+            {% endif %}
+             {% from 'cv.html' import skill_array %}
+            {% for skill in skill_array %}
+                <li>{{ skill }}</li>
+            {% endfor %}
+         {% block content %}{% endblock %}
+         </ul>
+    </div>
+
+
+</body>
+
+
+
+
+
+
+</html>
