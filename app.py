@@ -3,7 +3,7 @@ from flask import Flask, render_template, url_for, request, session, redirect
 app = Flask(__name__)
 app.secret_key ='1234'
 
-
+#try
 @app.route('/')
 def home():
     return render_template("cv.html")
