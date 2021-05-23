@@ -1,0 +1,111 @@
+{#tyy#}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='cv.css') }}"/>
+</head>
+
+<body onload="startTime()">
+<div id="fb-root"></div>
+<nav id="nav" >
+    <ul >
+        <li><a href="#about" onclick="navButton()">HOME</a></li>
+        <li><a href="#skills" onclick="navButton()">Skills</a></li>
+        <li><a href="#exp" onclick="navButton()">Experience</a></li>
+        <li><a href="#port" onclick="navButton()">Portfolio</a></li>
+        <li><a href="#education" onclick="navButton()">Education</a></li>
+        <li><a href="#contact" onclick="navButton()">Contact Me</a></li>
+        <li style="float: right"><a href="#contactList" id="fetchUserData">contact list</a></li>
+        {% if  session['userName'] %}
+        <li style="float: right; display: block; color: aquamarine; padding: 14px 16px;" id="user">Logged-in, {{ session['userName'] }}</li>
+        {% endif %}
+    </ul>
+</nav>
+
+<section id="contactList" style="display: none">
+    <!--
+         <h4>About me</h4>
+    -->
+    <br>
+    <br>
+    <div id="response">
+
+    </div>
+</section>
+
+<section id="about" class="section">
+    <h4>About me</h4>
+    <br>
+
+    <div class="line">
+        <div class="time">
+            <span id="time">ERROR</span>
+            <span id="date">ERROR</span>
+        </div>
+    </div>
+
+    <div id="me">
+        <img src= "{{ url_for('static', filename='passport.jpeg') }}" width="100" height="200">
+        <p> <b id = abouttxt></b>
+        </p>
+    </div>
+
+</section>
+<section id="skills" class="section">
+    <h4>Skills</h4>
+    <img src="{{ url_for('static', filename='SQL.png') }}" width="247" height="204">
+    <img src="{{ url_for('static', filename='java.jpg') }}" width="247"  height="204">
+    <img src="{{ url_for('static', filename='Solidworks.jpg') }}"  width="247"  height="204">
+    <p> <b> •	 Experience in Programming (languages ) Java, Sql , Eclipse.<br>
+        •	Experience in Solid program.</b>
+
+    </p>
+    {% set skill_one='java'%}
+    {% set skill_two ='Sql' %}
+    {% set skill_array =['JS','LV'] %}
+</section>
+
+<section id="exp" class="section">
+    <h4>Experience</h4>
+    <p id="exptxt"></p>
+
+</section>
+
+<section id="port" class="section">
+    <h4>Portfolio</h4>
+    <p>Here is a link to my git repositories <br> <a href="https://github.com/sarrot">https://github.com/sarrot</a>
+    </p>
+
+</section>
+
+<section id="education" class="section">
+    <h4>Education</h4>
+    <p>•   2019: Industrial Engineering and Management  student at "Ben-Gurion" University of the Negev<br>
+        •	2009–2012: Studies at "Omer" High School.<br>
+        •	Track: Biology – 5 Units, Social Sciences – 5 Units.</p>
+
+</section>
+
+<section id="contact" class="section">
+    <h4>Contact Me</h4>
+    <form action="mailto:sarrot@post.bgu.ac.il" method="post" enctype="text/plain">
+        Name:<br>
+        <input type="text" name="name"><br>
+        E-mail:<br>
+        <input type="email" name="mail" required><br>
+        Comment:<br>
+        <textarea id="text" type="text" name="content"  required></textarea><br>
+
+        <input id="button" type="submit" value="Send">
+    </form>
+
+</section>
+
+</body>
+<script src="{{ url_for('static', filename='cv.js') }}"></script>
+
+</html>

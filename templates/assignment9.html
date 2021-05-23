@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+{#tyy#}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='cv.css') }}"/>
+</head>
+<body>
+    <div>
+    <h1>Search</h1>
+        <form method="get" action="">
+            <input type="search" placeholder="Search" name="find">
+            <input type="submit">
+            </form>
+        <h2>Results:</h2>
+        {% if result %}
+        <h4>{{ result }}</h4>
+        {% endif %}
+        </div>
+<br>
+    {% if not user %}
+      <div >
+        <h1>Registration</h1>
+           <form method="post" action="">
+             <label ><b>User name</b></label> <br>
+               <label>
+                   <input type="text" placeholder="Enter user name"  name="usr" required>
+               </label> <br>
+              <label for="psw"><b>Password</b></label> <br>
+               <label>
+                   <input type="password" placeholder="Enter Password" name="psw" required>
+               </label> <br>
+              <label for="psw-repeat"><b>Repeat Password</b></label>
+               <br>
+               <label>
+                   <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+               </label>
+               <br>
+               <br>
+               <input type="submit" placeholder="register">
+        </form>
+    </div>
+    {% else %}
+        <h4>Logged-in, {{ user['userName'] }}</h4>
+    {% endif %}
+    <a href="{{ url_for('logout') }}" >logout</a>
+</body>
+</html>
