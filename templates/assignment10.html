@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for ms in messages %}
+                    <h4>{{ ms }}</h4>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form method="post" action="/insert_user">
+            <div>Insert user</div>
+            <label >first name</label> <br>
+            <input type="text" placeholder="Enter first name" name="first_name"><br>
+            <label >last name</label> <br>
+            <input type="text" placeholder="Enter last name" name="last_name"><br>
+            <label >email</label> <br>
+            <input type="text" placeholder="Enter email" name="email"><br>
+            <input type="submit">
+            </form>
+        <br>
+        <form method="post" action="/update_user">
+            <div>Update email user</div>
+            <label >first name</label> <br>
+            <input type="text" placeholder="Enter first name" name="first_name_to_update"><br>
+{#             <label >last name</label> <br>#}
+{#            <input type="text" placeholder="Enter last name" name="last_name_to_update"><br>#}
+            <label >email</label> <br>
+            <input type="text" placeholder="Enter email to change" name="email_to_update"><br>
+            <input type="submit">
+            </form>
+
+        <br>
+           <form method="post" action="/delete_user">
+            <div>Delete user</div>
+            <label >Enter ID</label> <br>
+            <input type="text" placeholder="Enter user id to delete" name="user_id"><br>
+            <input type="submit">
+            </form>
+        <br>
+        <h3>Users</h3>
+        <ul>
+            {% for user in users %}
+            <li>ID: {{ user.id }}, User's first name: {{ user.first_name }}, User's last name: {{ user.last_name }}, User's email: {{ user.email }}</li>
+            {% endfor %}
+        </ul>
+</body>
+</html>
