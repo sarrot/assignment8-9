@@ -1,21 +1,22 @@
 from flask import Flask, render_template, url_for, request, session, redirect
 
 app = Flask(__name__)
-app.secret_key ='1234'
+app.secret_key = '1234'
 
-#try2
+
 @app.route('/')
 def home():
     return render_template("cv.html")
 
+
 @app.route('/assignment8')
 def assignment8():
-    return render_template("skill_extend.html", skills= "my skills:")
+    return render_template("skill_extend.html", skills="my skills:")
 
 
-@app.route('/assignment9',methods=['GET','POST'])
+@app.route('/assignment9', methods=['GET', 'POST'])
 def assignment9():
-    users= [
+    users = [
         {
             "email": "michael.lawson@reqres.in",
             "first_name": "Michael",
@@ -47,18 +48,18 @@ def assignment9():
             "last_name": "Howell"
         },
     ]
-    to_search=request.args.get('find')
-    result=""
+    to_search = request.args.get('find')
+    result = ""
     if to_search:  # if the user entered a name to the search form
         for user in users:
-            if user['email']==to_search or user['first_name']==to_search or user['last_name']==to_search:
-                result=user  # if he did and it was name from the list, return this user
-    if to_search=="":
-        result=users  # else return all list
+            if user['email'] == to_search or user['first_name'] == to_search or user['last_name'] == to_search:
+                result = user  # if he did and it was name from the list, return this user
+    if to_search == "":
+        result = users  # else return all list
     if request.method == 'POST':
-        session.pop('userName',None)
-        session['userName'] = request.form['usr']   # session = the name of the user who registered
-    return render_template("assignment9.html",result=result, user=session)
+        session.pop('userName', None)
+        session['userName'] = request.form['usr']  # session = the name of the user who registered
+    return render_template("assignment9.html", result=result, user=session)
 
 
 @app.route('/logout')
@@ -66,6 +67,26 @@ def logout():
     session.pop('userName', None)
     return redirect(url_for('assignment9'))
 
+
+from flask import request
+
+
+def shutdown_server():
+    func = request.environ.get('werkzeug.server.shutdown')
+    if func is None:
+        raise RuntimeError('Not running with the Werkzeug Server')
+    func()
+
+
+@app.route('/shutdown', methods=['GET'])
+def shutdown():
+    shutdown_server()
+    return 'Server shutting down...'
+
+
 if __name__ == '__main__':
     app.debug = True
     app.run()
+
+from assignment10 import assignment10
+app.register_blueprint(assignment10)
