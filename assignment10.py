@@ -1,5 +1,6 @@
-import mysql.connector
+import mysql.connector, json
 from flask import render_template, Blueprint, request,redirect,flash
+
 
 assignment10= Blueprint('assignment10', __name__,
                  static_folder='static',
@@ -28,12 +29,56 @@ def interact_db(query, query_type: str):
     cursor.close()
     return return_value
 
+def interact_dbAss11(query, query_type: str):
+    return_value = False
+    connection = mysql.connector.connect(host ='localhost',
+                                         user='root',
+                                         passwd='rs052605'
+                                         ,database= 'ass10')
+    cursor = connection.cursor(named_tuple=True)
+    cursor.execute(query)
+
+    if query_type == 'fetch':
+        r = [dict((cursor.description[i][0], value) \
+                  for i, value in enumerate(row)) for row in cursor.fetchall()]
+        return_value= r
+
+    connection.close()
+    cursor.close()
+    return return_value
+
+
+
 @assignment10.route('/assignment10')
 def index():
     query3="SELECT * FROM users"
     query_result = interact_db(query=query3, query_type="fetch")
     return render_template('assignment10.html',users=query_result)
 
+
+@assignment10.route('/assignment11/users',methods=['GET'])
+def usersP():
+    query3 = "SELECT * FROM users"
+    query_result = interact_dbAss11(query=query3, query_type="fetch")
+    query_result= json.dumps(query_result)
+    return render_template('assignment11.html', users=query_result)
+
+@assignment10.route('/assignment11/users/selected/<int:SOME_USER_ID>',methods=['GET'])
+def usersID(SOME_USER_ID):
+    if SOME_USER_ID:
+        query3 = "SELECT * FROM users WHERE id= '%s'" %(SOME_USER_ID)
+        query_result = interact_dbAss11(query=query3, query_type="fetch")
+        query_result= json.dumps(query_result)
+        if len(query_result) == 2:
+            query_result = "User does not exist"
+    return render_template('assignment11.html', user=query_result)
+
+@assignment10.route('/assignment11/users/selected',methods=['GET'])
+def noUserID():
+    query3 = "SELECT * FROM users WHERE id= '1'"
+    query_result = interact_dbAss11(query=query3, query_type="fetch")
+    query_result = json.dumps(query_result)
+    return render_template('assignment11.html', user=query_result)
 
 
 @assignment10.route('/insert_user',methods=['POST'])
